@@ -1,0 +1,17 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: wso2is-5.10.0-build
+spec:
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/Chathuru/wso2-openshift-is'
+      ref: master
+    contextDir: docker-file
+  strategy:
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'wso2is:latest'

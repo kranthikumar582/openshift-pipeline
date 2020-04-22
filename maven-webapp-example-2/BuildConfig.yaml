@@ -1,0 +1,17 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: maven-webapp-build
+spec:
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/Chathuru/maven-web-project.git'
+      ref: master
+    contextDir: dockerfile
+  strategy:
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'maven-webapp:latest'

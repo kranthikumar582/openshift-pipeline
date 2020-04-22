@@ -1,0 +1,11 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: maven-webapp
+spec:
+  path: /maven-webapp
+  port:
+    targetPort: servlet-https
+  to:
+    kind: Service
+    name: maven-webapp

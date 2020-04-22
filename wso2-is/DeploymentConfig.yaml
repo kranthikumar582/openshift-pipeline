@@ -1,0 +1,31 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: wso2-is-deployment
+spec:
+  replicas: 1
+  selector:
+    app: wso2is
+  template:
+    metadata:
+      labels:
+        app: wso2is
+    spec:
+      containers:
+      - name: wso2is
+        image: ''
+        ports:
+        - containerPort: 9763
+          protocol: TCP
+        - containerPort: 9443
+          protocol: TCP
+  triggers:
+  - type: ConfigChange 
+  - type: ImageChange
+    imageChangeParams:
+      automatic: true
+      containerNames:
+      - wso2is
+      from:
+        kind: ImageStreamTag
+        name: wso2is:latest
