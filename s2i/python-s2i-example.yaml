@@ -1,0 +1,20 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: python-s2i
+spec:
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/sclorg/django-ex.git'
+      ref: master
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: DockerImage
+        name: centos/python-36-centos7
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'python-s2i:latest'
