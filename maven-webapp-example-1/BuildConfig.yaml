@@ -8,7 +8,11 @@ spec:
     dockerfile: >-
       FROM tomcat
 
-      RUN wget https://github.com/Chathuru/maven-web-project/releases/download/v1.0/maven-webapp.war -O /usr/local/tomcat/webapps/maven-webapp.war
+      RUN \
+      
+        chmod -R g+rwX /usr/local/tomcat/webapps &&\
+      
+        wget https://github.com/Chathuru/maven-web-project/releases/download/v1.0/maven-webapp.war -O /usr/local/tomcat/webapps/maven-webapp.war
       
       CMD ["catalina.sh", "run"]
   strategy:
